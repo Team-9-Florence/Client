@@ -4,6 +4,7 @@ function showRegisterPage(){
     $('#main-page').hide()
     $('#cats-page').hide()
     $('#btn-adopt').hide()
+    $('#btn-adopted').hide()
     $('#btn-logout').hide()
 }
 
@@ -13,6 +14,7 @@ function showLoginPage() {
     $('#main-page').hide()
     $('#cats-page').hide()
     $('#btn-adopt').hide()
+    $('#btn-adopted').hide()
     $('#btn-logout').hide()
 }
 
@@ -22,6 +24,7 @@ function showMainPage() {
     $('#register-page').hide()
     $('#cats-page').hide()
     $('#btn-adopt').show()
+    $('#btn-adopted').hide()
     $('#btn-logout').show()
     fetchAdoptedCats()
 }
@@ -32,6 +35,7 @@ function showAdoptCatsPage() {
     $('#register-page').hide()
     $('#cats-page').show()
     $('#btn-adopt').show()
+    $('#btn-adopted').show()
     $('#btn-logout').show()
     fetchAllCats()
 }
@@ -57,7 +61,7 @@ function register() {
         })
         .always(_ => {
             $("#registerEmail").val("")
-            $("registerPassword").val("")
+            $("#registerPassword").val("")
         })
 }
 
@@ -83,27 +87,27 @@ function login() {
         })
         .always(() => {
             $("#loginEmail").val("")
-            $("loginPassword").val("")
+            $("#loginPassword").val("")
         })
 }
 
 function logout() {
-    localStorage.clear()
-    showLoginPage()
     const auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
+    localStorage.clear()
+    showLoginPage()
 }
 
 function onSignIn(googleUser) {
-    const google_token = googleUser.getAuthResponse().id_token;
+    const googleToken = googleUser.getAuthResponse().id_token;
     gapi.auth2.getAuthInstance().disconnect()
     $.ajax({
         url: 'http://localhost:3000/googleLogin',
         method: 'POST',
         data: {
-            google_token
+            googleToken
         }
     })
         .done(response => {
@@ -210,9 +214,9 @@ function fetchAllCats() {
         }
     })
     .done(res => {
-        $("#cat-list").empty()
+        $("#allCats-list").empty()
         res.forEach(cat => {
-            $("#cat-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+            $("#allCats-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
                 <div class="card">
                     <h3 class="card-name">${cat.name}</h3>
                     <div class="card-body">
