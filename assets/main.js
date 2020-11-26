@@ -33,4 +33,9 @@ $(document).ready(function() {
         e.preventDefault()
         showAdoptCatsPage()
     })
+
+    $('#btn-adopted').on("click", function(e) {
+        e.preventDefault()
+        showMainPage()
+    })
 })
