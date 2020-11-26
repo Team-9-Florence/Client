@@ -113,3 +113,89 @@ function onSignIn(googleUser) {
             console.log(err);
         })
 }
+
+function fetchAdoptedCats() {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:3000/catsAdopt",
+        headers: {
+            access_token: localStorage.getItem('access_token')
+        }
+    })
+        .done(res => {
+            $("#cat-list").empty()
+            res.forEach(cat => {
+                $("#cat-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+                    <div class="card">
+                        <h3 class="card-name">${cat.name}</h3>
+                        <div class="card-body">
+                            <h5 class="card-status">${cat.status}</h5>
+                            <h5 class="card-age">${cat.age}</h5>
+                            <h5 class="card-gender">${cat.gender}</h5>
+                            <h5 class="card-primaryBreeds">${cat.primaryBreeds}</h5>
+                            <button class="btn btn-primary text-white col-4" onclick="infoCat(${cat.id})">More Info</button>
+                            <button class="btn btn-warning text-white col-4" onclick="deleteCat(${cat.id})">Delete</button>
+                        </div>
+                    </div>
+                </div>`)
+            })
+        })
+        .fail(xhr => {
+            console.log(xhr);
+        })
+}
+
+function infoCat(id) {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:3000/catsAdopt/" + id,
+        headers: {
+            access_token: localStorage.getItem('access_token')
+        }
+    })
+        .done(res => {
+            $("#cat-list").empty()
+            res.forEach(cat => {
+                $("#cat-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+                    <div class="card">
+                        <h3 class="card-name">${cat.name}</h3>
+                        <div class="card-body">
+                            <h5 class="card-status">${cat.status}</h5>
+                            <h5 class="card-age">${cat.age}</h5>
+                            <h5 class="card-gender">${cat.gender}</h5>
+                            <h5 class="card-primaryBreeds">${cat.primaryBreeds}</h5>
+                            <h5 class="card-secondaryBreeds">${cat.secondaryBreeds}</h5>
+                            <h5 class="card-mixedBreeds">${cat.mixedBreeds}</h5>
+                            <h5 class="card-size">${cat.size}</h5>
+                            <h5 class="card-email">${cat.email}</h5>
+                            <h5 class="card-phone">${cat.phone}</h5>
+                            <h5 class="card-address">${cat.address}</h5>
+                            <h5 class="card-city">${cat.city}</h5>
+                            <h5 class="card-country">${cat.country}</h5>
+                            <button class="btn btn-primary text-white col-4" onclick="showMainPage()">Back</button>
+                            <button class="btn btn-warning text-white col-4" onclick="deleteCat(${cat.id})">Delete</button>
+                        </div>
+                    </div>
+                </div>`)
+            })
+        })
+        .fail(xhr => {
+            console.log(xhr);
+        })
+}
+
+function deleteCat(id) {
+    $.ajax({
+        method: "DELETE",
+        url: "http://localhost:3000/catsAdopt/" + id,
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
+    })
+        .done(res => {
+            fetchAdoptedCats()
+        })
+        .fail(err => {
+            console.log(err);
+        })
+}
