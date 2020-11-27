@@ -27,6 +27,7 @@ function showMainPage() {
     $('#btn-adopted').hide()
     $('#btn-logout').show()
     fetchAdoptedCats()
+    fetchFactCats()
 }
 
 function showAdoptCatsPage() {
@@ -301,6 +302,48 @@ function adoptCat(id) {
         .fail(xhr => {
             console.log(xhr);
         })
+    })
+    .fail(xhr => {
+        console.log(xhr);
+    })
+}
+
+function fetchFactCats() {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:3000/catsFact",
+        headers: {
+            access_token: localStorage.getItem('access_token')
+        }
+    })
+    .done(res => {
+        $(".carousel-inner").empty()
+        $(".carousel-indicators").empty()
+
+        for (let i = 0; i < res.length; i++) {
+            if (i === 0) {
+            $(".carousel-indicators").append(`<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>`)
+            $(".carousel-inner").prepend(` 
+            <div class="carousel-item active">
+            <img src="${res[i].url}" height = "350px" class="rounded mx-auto d-block" style="opacity: 0.5;" alt="...">
+            <div class="carousel-caption d-md-block text-center">
+              <h5>Cat Fact!</h5>
+              <p>${res[i].text}</p>
+            </div>
+          </div>`)
+            } else {
+            $(".carousel-indicators").prepend(`<li data-target="#carouselExampleCaptions" data-slide-to="${i}"></li>`)
+            $(".carousel-inner").prepend(` 
+            <div class="carousel-item">
+            <img src="${res[i].url}" height = "350px" style="opacity: 0.5;" class="rounded mx-auto d-block" alt="...">
+            <div class="carousel-caption d-md-block text-center">
+              <h5>Cat Fact!</h5>
+              <p>${res[i].text}</p>
+            </div>
+          </div>`) 
+            }
+            
+        } 
     })
     .fail(xhr => {
         console.log(xhr);
