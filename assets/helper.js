@@ -132,14 +132,14 @@ function fetchAdoptedCats() {
             $("#cat-list").empty()
             response.forEach(cat => {
                 $("#cat-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
-                    <div class="card">
+                    <div class="card" style="color: palevioletred">
                         <h3 class="card-name">${cat.name}</h3>
                         <div class="card-body">
-                            <h5 class="card-status">${cat.status}</h5>
-                            <h5 class="card-age">${cat.age}</h5>
-                            <h5 class="card-gender">${cat.gender}</h5>
-                            <h5 class="card-primaryBreeds">${cat.primaryBreeds}</h5>
-                            <button class="btn btn-primary text-white col-4" onclick="infoCat(${cat.id})">More Info</button>
+                            <h5 class="card-status">Status: ${cat.status}</h5>
+                            <h5 class="card-age">Age: ${cat.age}</h5>
+                            <h5 class="card-gender">Gender: ${cat.gender}</h5>
+                            <h5 class="card-primaryBreeds">Primary Breed: ${cat.primaryBreeds}</h5>
+                            <button class="btn btn-primary text-white col-5" onclick="infoCat(${cat.id})">More Info</button>
                             <button class="btn btn-warning text-white col-4" onclick="deleteCat(${cat.id})">Delete</button>
                         </div>
                     </div>
@@ -161,18 +161,17 @@ function infoCat(id) {
         }
     })
         .done(response => {
-            console.log(response)
             $("#cat-list").empty()
             $("#cat-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
-                     <div class="card">
+                     <div class="card" style="color: palevioletred">
                          <h3 class="card-name">${response.name}</h3>
                          <div class="card-body">
                              <h5 class="card-status">Status : ${response.status}</h5>
                              <h5 class="card-age">Age: ${response.age}</h5>
                              <h5 class="card-gender">Gender: ${response.gender}</h5>
-                             <h5 class="card-primaryBreeds">Primary Breeds: ${response.primaryBreeds}</h5>
-                             <h5 class="card-secondaryBreeds">Seconsary Breeds: ${response.secondaryBreeds}</h5>
-                             <h5 class="card-mixedBreeds">Mixed Breeds: ${response.mixedBreeds}</h5>
+                             <h5 class="card-primaryBreeds">Primary Breed: ${response.primaryBreeds}</h5>
+                             <h5 class="card-secondaryBreeds">Seconsary Breed: ${response.secondaryBreeds}</h5>
+                             <h5 class="card-mixedBreeds">Mixed Breed: ${response.mixedBreeds}</h5>
                              <h5 class="card-size">Size : ${response.size}</h5>
                              <h5 class="card-email">Email: ${response.email}</h5>
                              <h5 class="card-phone">Phone: ${response.phone}</h5>
@@ -218,14 +217,14 @@ function fetchAllCats() {
         $("#allCats-list").empty()
         response.forEach(cat => {
             $("#allCats-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
-                <div class="card">
+                <div class="card" style="color: palevioletred">
                     <h3 class="card-name">${cat.name}</h3>
                     <div class="card-body">
-                        <h5 class="card-status">${cat.status}</h5>
-                        <h5 class="card-age">${cat.age}</h5>
-                        <h5 class="card-gender">${cat.gender}</h5>
-                        <h5 class="card-primaryBreeds">${cat.primaryBreeds}</h5>
-                        <button class="btn btn-primary text-white col-4" onclick="infoClickedCat(${cat.id})">More Info</button>
+                        <h5 class="card-status">Status: ${cat.status}</h5>
+                        <h5 class="card-age">Age: ${cat.age}</h5>
+                        <h5 class="card-gender">Gender: ${cat.gender}</h5>
+                        <h5 class="card-primaryBreeds">Primary Breed: ${cat.breeds.primary}</h5>
+                        <button class="btn btn-primary text-white col-5" onclick="infoClickedCat(${cat.id})">More Info</button>
                         <button class="btn btn-warning text-white col-4" onclick="adoptCat(${cat.id})">Adopt</button>
                     </div>
                 </div>
@@ -247,24 +246,23 @@ function infoClickedCat(id) {
         }
     })
     .done(response => {
-        console.log(response)
         $("#allCats-list").empty()
         $("#allCats-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
-                     <div class="card">
+                     <div class="card" style="color: palevioletred">
                          <h3 class="card-name">${response.name}</h3>
                          <div class="card-body">
                              <h5 class="card-status">Status : ${response.status}</h5>
                              <h5 class="card-age">Age: ${response.age}</h5>
                              <h5 class="card-gender">Gender: ${response.gender}</h5>
-                             <h5 class="card-primaryBreeds">Primary Breeds: ${response.primaryBreeds}</h5>
-                             <h5 class="card-secondaryBreeds">Seconsary Breeds: ${response.secondaryBreeds}</h5>
-                             <h5 class="card-mixedBreeds">Mixed Breeds: ${response.mixedBreeds}</h5>
+                             <h5 class="card-primaryBreeds">Primary Breed: ${response.breeds.primary}</h5>
+                             <h5 class="card-secondaryBreeds">Seconsary Breed: ${response.breeds.secondary}</h5>
+                             <h5 class="card-mixedBreeds">Mixed Breed: ${response.breeds.mixed}</h5>
                              <h5 class="card-size">Size : ${response.size}</h5>
-                             <h5 class="card-email">Email: ${response.email}</h5>
-                             <h5 class="card-phone">Phone: ${response.phone}</h5>
-                             <h5 class="card-address">Addres: ${response.address}</h5>
-                             <h5 class="card-city">City: ${response.city}</h5>
-                             <h5 class="card-country">Country: ${response.country}</h5>
+                             <h5 class="card-email">Email: ${response.contact.email}</h5>
+                             <h5 class="card-phone">Phone: ${response.contact.phone}</h5>
+                             <h5 class="card-address">Address: ${response.contact.address.address1}</h5>
+                             <h5 class="card-city">City: ${response.contact.address.city}</h5>
+                             <h5 class="card-country">Country: ${response.contact.address.country}</h5>
                              <button class="btn btn-primary text-white col-4" onclick="showAdoptCatsPage()">Back</button>
                              <button class="btn btn-warning text-white col-4" onclick="adoptCat(${response.id})">Adopt</button>
                          </div>

@@ -10,18 +10,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-image: url('https://previews.123rf.com/images/el4anes/el4anes1604/el4anes160400024/55792615-cute-cat-face-seamless-wallpaper.jpg');">
     <!-- Nav Bar -->
-    <nav class="navbar navbar-dark bg-dark mb-5">
+    <nav class="navbar navbar-dark  mb-5" style="background-color: palevioletred;">
         <h1 class="text-white mr-auto">Cat Shelter</h1>
-        <button class="btn btn-outline-primary p-2" style="margin-right: 1em;" id="btn-adopted">Adopted</button>
-        <button class="btn btn-outline-primary p-2" style="margin-right: 1em;" id="btn-adopt">Adopt Cats</button>
-        <button class="btn btn-outline-danger p-2" id="btn-logout">Logout</button>
+        <button class="btn btn-primary p-2" style="margin-right: 1em;" id="btn-adopted">Adopted</button>
+        <button class="btn btn-primary p-2" style="margin-right: 1em;" id="btn-adopt">Adopt Cats</button>
+        <button class="btn btn-danger p-2" id="btn-logout">Logout</button>
     </nav>
 
     <div class="container p-5">
         <!-- Login Page -->
-        <div id="login-page">
+        <div id="login-page" style="color: palevioletred">
             <h1><strong>Login</strong></h1>
             <form class="form-group" id="login-form">
                 <div class="form-group">
@@ -32,14 +32,14 @@
                     <label for="loginPassword">Password</label>
                     <input type="password" class="form-control" id="loginPassword">
                 </div>
-                <button id="login">Login</button>
-                <button id="toRegisterForm">Don't Have an Account?</button>
+                <button class="btn btn-light" id="login">Login</button>
+                <button class="btn btn-light" id="toRegisterForm">Don't Have an Account?</button>
             </form>
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
 
         <!-- Register Page -->
-        <div id="register-page">
+        <div id="register-page" style="color: palevioletred">
             <h1><strong>Register</strong></h1>
             <form class="mb-5" id="register-form">
                 <div class="form-group">
@@ -50,18 +50,14 @@
                     <label for="registerPassword">Password</label>
                     <input type="password" class="form-control" id="registerPassword">
                 </div>
-                <button id="register">Register</button>
-                <button id="toLoginForm">Already Have an Account?</button>
+                <button class="btn btn-light" id="register">Register</button>
+                <button class="btn btn-light" id="toLoginForm">Already Have an Account?</button>
             </form>
         </div>
 
         <!-- Main Page -->
         <div id="main-page">
-            <h1>Your Adopted Cats</h1> <br>
-            <div class="row" id="cat-list">
-
-            </div>
-            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="width: 600px left: auto">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="position: relative;" style="left: auto">
                 <ol class="carousel-indicators" >
                     <!-- indikator mirip page -->
                 </ol>
@@ -77,11 +73,16 @@
                   <span class="sr-only">Next</span>
                 </a>
             </div>
+            <br>
+            <h1 style="color: palevioletred">Your Adopted Cats</h1> <br>
+            <div class="row" id="cat-list">
+
+            </div>
         </div>
 
         <!-- Cats Page -->
         <div id="cats-page">
-            <h1>Adopt Some Cats!</h1>
+            <h1 style="color: palevioletred">Adopt Some Cats!</h1>
             <div class="row" id="allCats-list">
             </div>
         </div>
