@@ -127,10 +127,10 @@ function fetchAdoptedCats() {
             access_token: localStorage.getItem('access_token')
         }
     })
-        .done(res => {
+        .done(response => {
             $("#cat-list").empty()
-            res.forEach(cat => {
-                $("#cat-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+            response.forEach(cat => {
+                $("#cat-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
                     <div class="card">
                         <h3 class="card-name">${cat.name}</h3>
                         <div class="card-body">
@@ -159,27 +159,27 @@ function infoCat(id) {
             access_token: localStorage.getItem('access_token')
         }
     })
-        .done(res => {
-            console.log(res)
+        .done(response => {
+            console.log(response)
             $("#cat-list").empty()
-            $("#cat-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+            $("#cat-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
                      <div class="card">
-                         <h3 class="card-name">${res.name}</h3>
+                         <h3 class="card-name">${response.name}</h3>
                          <div class="card-body">
-                             <h5 class="card-status">Status : ${res.status}</h5>
-                             <h5 class="card-age">Age: ${res.age}</h5>
-                             <h5 class="card-gender">Gender: ${res.gender}</h5>
-                             <h5 class="card-primaryBreeds">Primary Breeds: ${res.primaryBreeds}</h5>
-                             <h5 class="card-secondaryBreeds">Seconsary Breeds: ${res.secondaryBreeds}</h5>
-                             <h5 class="card-mixedBreeds">Mixed Breeds: ${res.mixedBreeds}</h5>
-                             <h5 class="card-size">Size : ${res.size}</h5>
-                             <h5 class="card-email">Email: ${res.email}</h5>
-                             <h5 class="card-phone">Phone: ${res.phone}</h5>
-                             <h5 class="card-address">Addres: ${res.address}</h5>
-                             <h5 class="card-city">City: ${res.city}</h5>
-                             <h5 class="card-country">Country: ${res.country}</h5>
+                             <h5 class="card-status">Status : ${response.status}</h5>
+                             <h5 class="card-age">Age: ${response.age}</h5>
+                             <h5 class="card-gender">Gender: ${response.gender}</h5>
+                             <h5 class="card-primaryBreeds">Primary Breeds: ${response.primaryBreeds}</h5>
+                             <h5 class="card-secondaryBreeds">Seconsary Breeds: ${response.secondaryBreeds}</h5>
+                             <h5 class="card-mixedBreeds">Mixed Breeds: ${response.mixedBreeds}</h5>
+                             <h5 class="card-size">Size : ${response.size}</h5>
+                             <h5 class="card-email">Email: ${response.email}</h5>
+                             <h5 class="card-phone">Phone: ${response.phone}</h5>
+                             <h5 class="card-address">Addres: ${response.address}</h5>
+                             <h5 class="card-city">City: ${response.city}</h5>
+                             <h5 class="card-country">Country: ${response.country}</h5>
                              <button class="btn btn-primary text-white col-4" onclick="showMainPage()">Back</button>
-                             <button class="btn btn-warning text-white col-4" onclick="deleteCat(${res.id})">Delete</button>
+                             <button class="btn btn-warning text-white col-4" onclick="deleteCat(${response.id})">Delete</button>
                          </div>
                      </div>
                  </div>`)
@@ -197,7 +197,7 @@ function deleteCat(id) {
             access_token: localStorage.getItem("access_token")
         }
     })
-        .done(res => {
+        .done(response => {
             fetchAdoptedCats()
         })
         .fail(err => {
@@ -213,10 +213,10 @@ function fetchAllCats() {
             access_token: localStorage.getItem('access_token')
         }
     })
-    .done(res => {
+    .done(response => {
         $("#allCats-list").empty()
-        res.forEach(cat => {
-            $("#allCats-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+        response.forEach(cat => {
+            $("#allCats-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
                 <div class="card">
                     <h3 class="card-name">${cat.name}</h3>
                     <div class="card-body">
@@ -225,7 +225,7 @@ function fetchAllCats() {
                         <h5 class="card-gender">${cat.gender}</h5>
                         <h5 class="card-primaryBreeds">${cat.primaryBreeds}</h5>
                         <button class="btn btn-primary text-white col-4" onclick="infoClickedCat(${cat.id})">More Info</button>
-                        <button class="btn btn-warning text-white col-4" onclick="deleteCat(${cat.id})">Delete</button>
+                        <button class="btn btn-warning text-white col-4" onclick="adoptCat(${cat.id})">Adopt</button>
                     </div>
                 </div>
             </div>`)
@@ -245,26 +245,27 @@ function infoClickedCat(id) {
             access_token: localStorage.getItem('access_token')
         }
     })
-    .done(res => {
-        console.log(res)
-        $("#cat-list").append(`<div class="col-4" style="height: 500px !important; object-fit: cover">
+    .done(response => {
+        console.log(response)
+        $("#allCats-list").empty()
+        $("#allCats-list").append(`<div class="col-4" style="height: 300px !important; object-fit: cover">
                      <div class="card">
-                         <h3 class="card-name">${res.name}</h3>
+                         <h3 class="card-name">${response.name}</h3>
                          <div class="card-body">
-                             <h5 class="card-status">Status : ${res.status}</h5>
-                             <h5 class="card-age">Age: ${res.age}</h5>
-                             <h5 class="card-gender">Gender: ${res.gender}</h5>
-                             <h5 class="card-primaryBreeds">Primary Breeds: ${res.primaryBreeds}</h5>
-                             <h5 class="card-secondaryBreeds">Seconsary Breeds: ${res.secondaryBreeds}</h5>
-                             <h5 class="card-mixedBreeds">Mixed Breeds: ${res.mixedBreeds}</h5>
-                             <h5 class="card-size">Size : ${res.size}</h5>
-                             <h5 class="card-email">Email: ${res.email}</h5>
-                             <h5 class="card-phone">Phone: ${res.phone}</h5>
-                             <h5 class="card-address">Addres: ${res.address}</h5>
-                             <h5 class="card-city">City: ${res.city}</h5>
-                             <h5 class="card-country">Country: ${res.country}</h5>
-                             <button class="btn btn-primary text-white col-4" onclick="showMainPage()">Back</button>
-                             <button class="btn btn-warning text-white col-4" onclick="deleteCat(${res.id})">Delete</button>
+                             <h5 class="card-status">Status : ${response.status}</h5>
+                             <h5 class="card-age">Age: ${response.age}</h5>
+                             <h5 class="card-gender">Gender: ${response.gender}</h5>
+                             <h5 class="card-primaryBreeds">Primary Breeds: ${response.primaryBreeds}</h5>
+                             <h5 class="card-secondaryBreeds">Seconsary Breeds: ${response.secondaryBreeds}</h5>
+                             <h5 class="card-mixedBreeds">Mixed Breeds: ${response.mixedBreeds}</h5>
+                             <h5 class="card-size">Size : ${response.size}</h5>
+                             <h5 class="card-email">Email: ${response.email}</h5>
+                             <h5 class="card-phone">Phone: ${response.phone}</h5>
+                             <h5 class="card-address">Addres: ${response.address}</h5>
+                             <h5 class="card-city">City: ${response.city}</h5>
+                             <h5 class="card-country">Country: ${response.country}</h5>
+                             <button class="btn btn-primary text-white col-4" onclick="showAdoptCatsPage()">Back</button>
+                             <button class="btn btn-warning text-white col-4" onclick="adoptCat(${response.id})">Adopt</button>
                          </div>
                      </div>
                  </div>`)
@@ -272,4 +273,36 @@ function infoClickedCat(id) {
         .fail(xhr => {
             console.log(xhr);
         })
+}
+
+function adoptCat(id) {
+    $.ajax({
+        method: "GET",
+        url: "http://localhost:3000/cats/" + id,
+        headers: {
+            access_token: localStorage.getItem('access_token')
+        }
+    })
+    .done(response => {
+        console.log(response);
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:3000/cats/" + id,
+            headers: {
+                access_token: localStorage.getItem('access_token')
+            },
+            data: {
+                response
+            }
+        })
+        .done(response => {
+            showMainPage()
+        })
+        .fail(xhr => {
+            console.log(xhr);
+        })
+    })
+    .fail(xhr => {
+        console.log(xhr);
+    })
 }
